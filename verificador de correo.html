@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Verificador De Email</title>
+    <script>
+        function validateEmail() {
+            const email = document.getElementById("email").value;
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regex.test(email)) {
+                alert("Correo Electronico Invalido.");
+                return false;
+            }
+            return true;
+        }
+
+        function sendEmail() {
+            const email = document.getElementById("email").value;
+            const subject = "Email Verification";
+            const body = `Correo Electronico Verificado: ${email}`;
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            if (validateEmail()) {
+                sendEmail();
+            }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="handleSubmit(event)">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
